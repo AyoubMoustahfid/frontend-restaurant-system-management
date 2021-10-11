@@ -1,0 +1,17 @@
+body{
+    font-family: 'Red Hat Display', sans-serif;
+}
+.nav-link, .nav-item .btn{
+    font-weight: 700;
+    font-size: 16;
+    list-style-type: none;
+}
+
+
+.point{
+    list-style-type: none;
+}
+
+.point #list-point .btn-success{
+    color : white !important;
+}

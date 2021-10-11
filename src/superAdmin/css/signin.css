@@ -1,0 +1,37 @@
+
+.fmxw-500{
+    max-width: 500px!important;
+}
+
+.w-100 {
+    max-width: 500px!important;
+}
+
+@media (min-width: 992px){
+    .mt-lg-0 {
+        margin-top: 0!important;
+    }
+}
+
+@media (min-width: 992px){
+    .vh-lg-100 {
+        height: 92.2vh!important;
+    }
+}
+
+.btn-gray-800 {
+    color: #fff;
+    background-color: #1f2937;
+    border-color: #1f2937;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(17 24 39 / 8%);
+}
+
+.form-bg-image{
+    background-repeat: no-repeat!important;
+    background-position: top center!important;
+}
+
+.text-decoration{
+    color: #1f2937;
+    text-decoration: none;
+}

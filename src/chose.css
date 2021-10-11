@@ -1,0 +1,15 @@
+.profile{
+    width: 10vw;
+    max-width: 200px;
+    min-width: 84px;
+    margin: 0 2vw 0 0;
+    text-decoration: none;
+}
+
+.text-white{
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    
+}
+
