@@ -78,7 +78,19 @@ const Checkout = ({products}) => {
                            address: delivryAddress
                        }
                        createOrder(userId, token, orderData)
-                           .then(res => console.log(res))
+                         .then(res => {
+                               if(res.error){
+                                    toastr.error("Order", 'Order is not created', {
+                                        positionClass: "toast-bottom-right",
+                                    })
+                                    
+                                    return
+                               }
+                               toastr.success("Valid", 'Your Order is Created Success was Successfully', {
+                                    positionClass: "toast-bottom-right",
+                                })
+                                window.location.reload()
+                           })
                            .catch(err => console.log(err))
 
                        emptyCart(() => {
@@ -110,14 +122,14 @@ const Checkout = ({products}) => {
                 <div>
                  { dropIn() }
                     <div className="d-grid">
-                        <button onClick={buy} className="btn btn-raised btn-success btn-block">Buy</button>
+                        <button onClick={buy} className="btn btn-raised btn-success btn-block" disabled={!data.address ? true : false}>Buy</button>
                     </div>
                 </div>
             )
         }
         return (
             <Link to="/singnin">
-               <button className="btn btn-raised btn-warning btn-block">Sign to Checkout</button>
+               <button className="btn btn-raised btn-warning btn-block" >Sign to Checkout</button>
             </Link>
         )
     }
@@ -126,6 +138,7 @@ const Checkout = ({products}) => {
     const handleInput = e => {
         setData({...data, address: e.target.value})
     }
+
     return (
         <div>
             <h2>Total : <span className="badge badge-success">{totalToCheckout(products).toString().substring(0, 7)}</span> </h2>

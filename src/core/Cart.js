@@ -13,7 +13,8 @@ function Cart() {
 
     let productsInCart = useSelector(state => state.cart.products)
     let dispatch = useDispatch()
-  
+    
+    console.log('productsInCart', productsInCart)
     return (
         <div className="container py-5">
             {!productsInCart && !productsInCart ? (

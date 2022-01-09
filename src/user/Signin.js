@@ -4,8 +4,9 @@ import toastr from 'toastr';
 import "toastr/build/toastr.css";
 
 import {Link} from 'react-router-dom';
-import login from "./../assets/images/bannerLogin.jpg"
 import { API_URL } from './../config'
+import {img_login} from "../Constants/images"
+import  "../superAdmin/css/signin.css"
 
 
 const Signin = (props) => {
@@ -27,7 +28,7 @@ const Signin = (props) => {
 
         e.preventDefault();
 
-        fetch(`${API_URL}/auth/singnin`, {
+        fetch(`${API_URL}/auth/signin`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -63,19 +64,30 @@ const Signin = (props) => {
     const form = () => (
         <form onSubmit={submitSignin} className="my-4"> 
            
-            <div className="form-group my-2">
-                <label htmlFor="email" className="text-muted fs-4 fw-bold">Email : </label>
-                <input onChange={handleChange} type="email" className="form-control py-3" id="email" />
-            </div>
+        <div className="form-group mb-4">
+        <label htmlFor="email" className="text-muted fw-bold">Email : </label>
+        <input onChange={handleChange} type="email" className="form-control " id="email" />
+    </div>
 
 
-            <div className="form-group">
-                <label htmlFor="password" className="text-muted fs-4 fw-bold">Password :</label>
-                <input onChange={handleChange} type="password" className="form-control py-3" id="password"/>
+    <div className="form-group">
+        <div className="form-group mb-4">
+            <label htmlFor="password" className="text-muted  fw-bold">Password :</label>
+            <input onChange={handleChange} type="password" className="form-control " id="password"/>
+        </div>
+        <div className="d-flex justify-content-between align-items-top mb-4">
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="remember"/> 
+                <label className="form-check-label mb-0" htmlFor="remember">Remember me</label>
             </div>
+            <div>
+                <a href="./forgot-password.html" className="small text-right text-decoration">Lost password?</a>
+            </div>
+        </div>
+    </div>
 
             <div className="d-grid my-2">
-                <button type="submit" class="btn btn-primary py-2 fs-4 fw-bolder">Sign In</button>
+                <button type="submit" className="btn btn-gray-800  fw-bolder">Sign In</button>
             </div>
 
         
@@ -83,21 +95,26 @@ const Signin = (props) => {
     )
 
     return (
-        <div className="container-fluid">
-            <div className="row align-items-center">
-                <div className="col-7 " >
-                   <img src={login} style={{width: '100%', height: '92.4vh'}}/>
-                </div>
-                <div className="col-5 px-5 ">
-                    <h1 style={{fontWeight: 'bold'}}>Se connecter à Fresh Food</h1>
-                    { form() } 
-                    <div className="d-flex justify-content-center">
-                        <p style={{color: 'rgb(32, 201, 151)', fontWeight: 'bold', margin: '0px 5px'}}>Nouveau chez Fresh Food ? </p>
-                        <Link to='/signup' style={{textDirection: 'none', color: 'black !important', fontWeight: 'bolder'}}> Inscription</Link>
+        <section className="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div className="container">
+            <div className="row justify-content-center form-bg-image" style={{backgroundImage: `url(${img_login})`}}>
+                
+                <div className="col-12 d-flex align-items-center justify-content-center">
+                    <div className="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div className="text-center text-md-center mb-4 mt-md-0">
+                            <h1 className="mb-0 h3">Sign in to our platform </h1>
+                        </div>
+                        { form() } 
+                        <div className="d-flex justify-content-center align-items-center mt-4">
+                            <span className="fw-normal">Not registered? 
+                                <Link to="/signup" className="fw-bold text-decoration mx-1">Create account</Link>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div> 
         </div>
+    </section>
     )
 }
 

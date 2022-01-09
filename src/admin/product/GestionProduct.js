@@ -35,11 +35,11 @@ function GestionProduct() {
      }
  
      const productById = async  (id) => {
-          await fetch(`${API_URL}/product/${id}`, {
-             method: 'GET',
-             headers: {
-                 "Content-Type": "application/json"
-                }
+        await fetch(`${API_URL}/product/${id}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
             }).then(res => res.json())
             .then( res => {
                 localStorage.setItem("product", JSON.stringify(res.product))
@@ -171,7 +171,7 @@ function GestionProduct() {
                                     <td style={{fontSize: '.875rem'}}>{item.sold}</td>
                                     <td style={{fontSize: '.875rem'}}>
                                         <div className="row">
-                                            <div className="col-6">
+                                            <div className="col-12 col-sm-12 col-md-4 m-1">
 
                                                 <button className="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => productById(item._id)}>Edit</button>
 
@@ -221,7 +221,7 @@ function GestionProduct() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-sm-12 col-md-4 m-1">
                                                 <button className="btn btn-danger" onClick={() => deleteProduct(item._id)}>Delete</button>
                                             </div>
                                         </div>

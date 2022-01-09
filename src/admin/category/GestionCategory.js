@@ -15,61 +15,20 @@ const PageSize = 10;
 function GestionCategory(){
 
     const [name, setName] = useState('')
-    const [categoryName, setCategoryName] = useState('')
 
 
     const handleChange = (e) => {
 
         setName(e.target.value)
     }
-    const handleChangeUpdate = (e) => {
 
-        setCategoryName({...categoryName , [e.target.id]: e.target.value})
-    }
     const [categories, setCategories] = useState([]);
     const [categoryId, setCategoryId] = useState("")
     
     const [paginateCtegories, setPaginationctegories] = useState();
     const [currentPage, setCurrentPage] = useState(1)
  
-    // ++++++++++++ CREATE ONE CATEGORY +++++++++++++++++++
-    const submitCategory = (e) => {
 
-        e.preventDefault();
-
-        const { user, token } = isAuthenticated();
-
-        fetch(`${API_URL}/category/create/${user._id}`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({name})
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res.error) {
-                toastr.warning(res.error, 'Please Check form !', {
-                    positionClass: "toast-bottom-left",
-                })
-            }
-            else {
-                toastr.success(`Category ${name} created`, 'new Category', {
-                    positionClass: "toast-bottom-left",
-                })
-
-                setName("")
-
-            }
-
-        })
-        .catch(err =>  toastr.error(err, 'Server error !', {
-                    positionClass: "toast-bottom-left",
-                }))
-
-        }
     // =============== PUT ONE CATEGORY =================
     const updateCategory = (e) => {
         e.preventDefault();
@@ -86,7 +45,7 @@ function GestionCategory(){
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(categoryName)
+            body: JSON.stringify(name)
         }).then(res => res.json())
           .then(res => {
 
@@ -99,7 +58,7 @@ function GestionCategory(){
                       positionClass: "toast-bottom-left",
                 })
                   localStorage.removeItem('category')
-                  setCategoryName('')
+                  setName('')
               }
           })
     }
@@ -135,6 +94,7 @@ function GestionCategory(){
                 toastr.success('This category is deleted successfully', 'Delete is successful', {
                     positionClass: "toast-bottom-left",
                 })
+                window.location.reload()
           }).catch(err => toastr.error(err, 'Server error !', {
                     positionClass: "toast-bottom-left",
             }))
@@ -181,34 +141,14 @@ function GestionCategory(){
     return (
         <Layout height="92.2vh" background="rgb(236 236 236)">
             <div className="row mt-2 px-3">
-                <div className="col-12 my-2">
-                    <button type="button" className="btn btn-success d-flex align-items-center justify-content-evenly" data-bs-toggle="modal" data-bs-target="#addCategory">
+                <div className="col-2 me-auto my-2">
+                    <Link to="/category/create" type="button" className="btn btn-success d-flex align-items-center justify-content-evenly" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16" style={{margin: '0 5px'}}>
                             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"></path>
                         </svg>
                         New Category
-                    </button>
-                    <div className="modal fade" id="addCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
-                                    <form onSubmit={submitCategory}>
-                                        <div className="form-group">
-                                            <label htmlFor="name" className="text-muted"></label>
-                                            <input value={name} required autoFocus placeholder="Add name of Category" onChange={handleChange} type="text" className="form-control" id="name" name="name"/>
-                                        </div>
-                                        <div className="d-grid my-2">
-                                            <button type="submit" className="btn btn-primary ">New Category</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </Link>
+                    
                 </div>
                 <div className="col-12 bg-white  p-3">
                     <table className="table table-bordered">
@@ -239,8 +179,8 @@ function GestionCategory(){
                                                             <div className="modal-body">
                                                                 <form onSubmit={updateCategory}>
                                                                     <div className="form-group">
-                                                                        <label htmlFor="categoryName">Name Category</label>
-                                                                        <input type="text" className="form-control" id="categoryName" defaultValue={categoryId && categoryId.name}  placeholder="Update Name" onChange={handleChangeUpdate}/>
+                                                                        <label htmlFor="name">Name Category</label>
+                                                                        <input type="text" className="form-control" id="name" defaultValue={categoryId && categoryId.name}  placeholder="Update Name" onChange={handleChange}/>
                                                                     </div>
                                                                     <div className="d-grid my-2">
                                                                         <button type="submit" className="btn btn-primary">Update Category</button>

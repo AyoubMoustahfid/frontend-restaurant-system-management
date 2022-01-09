@@ -13,7 +13,6 @@ let store = createStore(rootReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && win
 
 ReactDOM.render(
   <React.StrictMode>
-
   <Provider store={store}>
     <Routes />
   </Provider>  

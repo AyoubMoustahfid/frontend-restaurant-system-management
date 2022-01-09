@@ -41,8 +41,9 @@ import AdminRoute from './auth/AdminRoute'
 import DetailOrder from './admin/order/DetailOrder'
 import SuperAdminRouter from './auth/SuperAdminRouter'
 
-
+// *****************PART: ADMIN ********************
 import GestionCategory from './admin/category/GestionCategory'
+import AddCategory from './admin/category/AddCategory'
 import AddProduct from './admin/product/AddProduct'
 import GestionProduct from './admin/product/GestionProduct'
 import ListOrders from './admin/order/ListOrders'
@@ -64,6 +65,7 @@ const Routes = () => {
 
                 <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
                 <AdminRoute path='/category/gestion' exact component={GestionCategory} />
+                <AdminRoute path='/category/create' exact component={AddCategory} />
                 <AdminRoute path='/admin/order' exact component={ListOrders} />
                 <AdminRoute path='/admin/validation_seller' exact component={ValidationSeller} />
                 <AdminRoute path='/admin/adsence' exact component={AddAdsence} />

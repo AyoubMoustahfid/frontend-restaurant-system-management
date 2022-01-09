@@ -50,6 +50,7 @@ export const procesPayment = (userId, token, paymentData) => {
                user.role === "FOURNISSEUR" ? `fournisseur/purchase/${userId}` :
                user.role === "EMPLOYEE" ? `employee/purchase/${userId}` : `purchase/${userId}`
 
+  console.log('uri process payment', uri)
   return  fetch(`${API_URL}/braintree/${uri}`, {
        method: "POST",
        headers: {

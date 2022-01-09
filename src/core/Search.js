@@ -31,7 +31,7 @@ const Search = () => {
         let { search, category } = searchData
 
         if(search || category) {
-
+            console.log('category', category)
             getProducts({search: search || undefined, category})
               .then(res => setProducts(res))
         }

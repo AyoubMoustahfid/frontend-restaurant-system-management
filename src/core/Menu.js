@@ -31,7 +31,7 @@ const Menu = (props) => {
 
     const signout = () => {
 
-        fetch(`${API_URL}/signout`)
+        fetch(`${API_URL}/auth/signout`)
           .then(() => {
 
             toastr.info('User SignOut', 'Next Time', {
@@ -187,34 +187,39 @@ const Menu = (props) => {
                         </ul>
                         <ul className="d-flex mb-0 point">
         
-                        { !isAuthenticated() && !isActive(props.history, '/chose') && (
+                        { !isAuthenticated()  && (
                             
                                 <Fragment>
                                     
                                     <li className="nav-item" id="list-point">
                                         <Link style={isActive(props.history, '/signin')} 
-                                                className="nav-link btn btn-success"
+                                                className="nav-link "
                                                 to="/signin">Connexion
                                                 
                                         </Link>
                                     </li>
                                     
-                                    <li className="nav-item">
+                                    <li className="nav-item" id="list-point">
                                         <Link style={isActive(props.history, '/signup')} className="nav-link" to="/signup">Register</Link>
                                     </li>
                                 </Fragment>
                         ) }
         
-                                    <li className="nav-item">
-                                        <Link style={isActive(props.history, '/cart')} className="nav-link" to="/cart">
+                            {isAuthenticated() && (
+                                <li className="nav-item mr-3 active">
+                                        <Link  style={isActive(props.history, '/cart')} type="button" class="nav-link position-relative"  to="/cart">
                                             Cart
-                                            <span> { countItem }</span>
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style={{backgroundColor:'rgb(32, 201, 151)'}}>
+                                            { countItem }
+                                            </span>
                                         </Link>
+                                        
                                     </li>
+                            )}
                             {isAuthenticated() &&  isAuthenticated().user.role === "USER" && (
                                 <Fragment>
                                     
-                                    <li className="nav-item mx-2">
+                                    <li className="nav-item mx-3 active">
                                         <span className="nav-link btn btn-success" style={{ cursor: 'pointer', color: 'white' }} onClick={signout}>SignOut</span>
                                     </li>
                                 </Fragment>
@@ -223,7 +228,7 @@ const Menu = (props) => {
                             {isAuthenticated() &&  (isAuthenticated().user.role === "SUPER_ADMIN" || isAuthenticated().user.role === "ADMIN" || isAuthenticated().user.role === "FOURNISSEUR" || isAuthenticated().user.role === "EMPLOYEER")  && (
                                 <Fragment>
                                     
-                                    <li className="nav-item mx-2">
+                                    <li className="nav-item mx-3">
                                         <span className="nav-link btn btn-success" 
                                             style={{ cursor: 'pointer', color: 'white' }} 
                                             onClick={isAuthenticated() && isAuthenticated().user.role === "SUPER_ADMIN" ? signoutSuperAdmin : 

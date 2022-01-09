@@ -13,6 +13,7 @@ import ShowImage from "./../../core/ShowImage"
 function DetailOrder(props) {
     const [orders, setOrders] = useState('')
     const [product, setProduct] = useState([])
+    const [users, setUsers] = useState('')
     const {user , token}  = isAuthenticated();
     const showViewBtn = true
  
@@ -21,18 +22,19 @@ function DetailOrder(props) {
         let orderId = props.match.params.id;
         getOneOrder(orderId, user._id, token)
                 .then(res => {
-                    console.log(res.order);
+                    console.log('order:', res);
                     setOrders(res.order)
+                    setProduct(res.order.products)
                     localStorage.setItem('productId', res.order.products[0]._id)
                 }).catch(err => console.log(err))
 
-            const productId = localStorage.getItem('productId')
-            console.log(productId);
-            getOneProduct(productId, user._id, token)
-            .then(res => {
-                // console.log('product:', res);
-                setProduct([res])
-            })
+            // const productId = localStorage.getItem('productId')
+
+            // getOneProduct(productId, user._id, token)
+            // .then(res => {
+            //     // console.log('product:', res);
+            //     setProduct([res])
+            // })
     }, [])
 
    
@@ -42,7 +44,7 @@ function DetailOrder(props) {
      
    }
 
-   console.log('pro:', product);
+   console.log('product:', product);
     return (
         <Layout height="92.1vh" background='#222840'>
             <div className="row justify-content-between mb-4 align-items-center mt-3">
@@ -57,7 +59,7 @@ function DetailOrder(props) {
                                 <div className="row">
                                     <div className="col-md-5">
                                         <div className="input-group">
-                                            <input type="text" className="form-control" value={`ORDER-${orders.transaction_id}`} disabled/>
+                                            <input type="text" className="form-control" value={`ORDER- ${orders.transaction_id}`} disabled/>
                                             <div className="input-group-append">
                                                 <button className="btn btn-danger" type="button">Track</button>
                                             </div>
@@ -82,7 +84,7 @@ function DetailOrder(props) {
     
                 </div>
             <div className="row">
-                <div className="col-lg-6">
+                <div className="col-12 col-md-12 col-lg-6">
                     <div className="card-traking" style={{backgroundColor: '#131633', color :'white'}}>
                         <div className="card-traking-header d-flex justify-content-between align-items-center">
                             <h4 className="card-traking-title m-0">{`order-${orders.transaction_id}`}</h4>
@@ -128,7 +130,7 @@ function DetailOrder(props) {
                                                         </div>
                                                         <div className="media-body ml-2">
                                                             <span className="d-block text-uppercase">Order Handed By</span>
-                                                            <h6 style={{fontSize:'.875rem'}}>Janet Smith</h6>
+                                                            <h6 style={{fontSize:'.875rem'}}>Client</h6>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -192,10 +194,10 @@ function DetailOrder(props) {
                     </div>
                 </div>
                 
-                <div className="col-6 ">
+                <div className="col-12 col-md-12 col-lg-6 ">
                     <div className="row">
-                        <div className="col-6">
-                        {product && product.map(item => (
+                    {product && product.map(item => (
+                        <div className="col-12 col-md-12 col-lg-6" key={item._id}>
                             <div className="card my-2 " key={item._id} style={{boxShadow: '0 30px 40px -10px rgb(26 77 160 / 12%)', backgroundColor: '#131633', color :'white'}}>
                             <ShowImage item={item} url="product/photo" className="card-img-top" height="300px"></ShowImage>
                             <div className="card-body">
@@ -205,7 +207,6 @@ function DetailOrder(props) {
                                 </div>
                                 <div className="d-flex justify-content-between my-2">
                                     <h6 style={{color : '#8790a6'}}>Revenue: {orders.amount}DH</h6>
-                                    <h6 style={{color : '#8790a6'}}>Category: {item && item.category.name}</h6>
                                 </div>
                                 <div className="row align-items-center">
                                     <div className="col-4">
@@ -228,8 +229,8 @@ function DetailOrder(props) {
                             
                             </div>
                         </div>
-                        ))}
                         </div>
+                        ))}
                     </div>
                 </div>
            </div>

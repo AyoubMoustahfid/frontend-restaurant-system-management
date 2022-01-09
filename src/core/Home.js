@@ -51,7 +51,7 @@ function Home() {
 
                 <h1>Best Sellers</h1>
                 <div className="row mt-3 mb-5">
-                        {productsArrivals && productsBestSellers.map((product, i) => (
+                        {productsBestSellers && productsBestSellers.map((product, i) => (
                         <div  key={product._id} className="col-12  col-md-6 col-lg-4 ">
                                 <Card product={product}></Card> 
                         </div>  

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Layout from './../core/Layout'
 import toastr from 'toastr';
 import "toastr/build/toastr.css";
-import login from "./../assets/images/bannerLogin.jpg"
+import {img_login} from "../Constants/images"
+import "../superAdmin/css/signin.css"
 import {Link} from 'react-router-dom'
 
 import { API_URL } from './../config'
@@ -16,7 +17,7 @@ const Signup = (props) => {
         password: '',
         phone: '',
         cin: '',
-        postal: '',
+        postal: 0,
         address: '',
     })
 
@@ -32,7 +33,7 @@ const Signup = (props) => {
 
         e.preventDefault();
 
-        fetch(`${API_URL}/user/singnup`, {
+        fetch(`${API_URL}/auth/signup`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -51,7 +52,6 @@ const Signup = (props) => {
                 toastr.success('User is created SuccessFully', 'New Accout', {
                     positionClass: "toast-bottom-left",
                 })
-
                 props.history.push('/signin')
             }
 
@@ -93,7 +93,7 @@ const Signup = (props) => {
 
             <div className="form-group">
                 <label htmlFor="postal" className="text-muted">Code Postal</label>
-                <input onChange={handleChange} type="number" className="form-control" id="postal"/>
+                <input onChange={handleChange} type="text" className="form-control" id="postal"/>
             </div>
 
             <div className="form-group">
@@ -101,26 +101,33 @@ const Signup = (props) => {
                 <input onChange={handleChange} type="text" className="form-control" id="address"/>
             </div>
 
-            <div className="d-grid my-3">
-                <button className="btn  btn-success">Sign Up</button>            
+            <div className="d-grid my-2">
+                <button type="submit" className="btn btn-gray-800  fw-bolder">Sign In</button>
             </div>
-
         </form>
     )
 
     return (
-        <div className="container-fluid">
-            <div className="row align-items-center">
-                <div className="col-7 " >
-                   <img src={login} style={{width: '100%', height: '92.4vh'}}/>
-                </div>
-                <div className="col-5 px-5 ">
-                    <h1 style={{fontWeight: 'bold'}}>Se connecter à Fresh Food</h1>
-                    { form() } 
-                   
+        <section className="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div className="container">
+            <div className="row justify-content-center form-bg-image" style={{backgroundImage: `url(${img_login})`}}>
+                
+                <div className="col-12 d-flex align-items-center justify-content-center">
+                    <div className="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div className="text-center text-md-center mb-4 mt-md-0">
+                            <h1 className="mb-0 h3">Sign in to our platform</h1>
+                        </div>
+                        { form() } 
+                        <div className="d-flex justify-content-center align-items-center mt-4">
+                            <span className="fw-normal">Not registered? 
+                                <Link to="/signin" className="fw-bold text-decoration mx-1">Log In</Link>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </div>
+    </section>
     )
 }
 
