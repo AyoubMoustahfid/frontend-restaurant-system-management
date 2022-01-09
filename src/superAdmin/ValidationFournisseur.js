@@ -36,6 +36,8 @@ function ValidationFournisseur() {
                 toastr.success(res.error, 'this Account is Activated', {
                     positionClass: "toast-bottom-left",
                 })
+
+                window.location.reload();
              }
           })
 
