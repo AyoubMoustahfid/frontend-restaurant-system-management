@@ -27,11 +27,11 @@ export const getAllFruitByFournisseur = (id, token) => {
 
 export const deleteFruit = (id, userId, token) => {
     return fetch(`${API_URL}/fruit/delete/${id}/${userId}`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-            'Accept': 'application/json',
-            ContentType: 'application/json',
-            Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json',
+            "Accept": "application/json",
+            'Authorization': `Bearer ${token}`
         }
     }).then(res => res.json())
       
