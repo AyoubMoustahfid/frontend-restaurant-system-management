@@ -164,7 +164,7 @@ function GestionCategory(){
                                     <td style={{fontSize: '.875rem'}}>{item.name}</td>
                                     <td style={{fontSize: '.875rem'}}>
                                         <div className="row">
-                                            <div className="col-6">
+                                            <div className="col-12 col-sm-12 col-md-4 m-1">
                                                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => categoryById(item._id)} >
                                                     EDIT
                                                 </button>
@@ -192,7 +192,7 @@ function GestionCategory(){
                                                 </div>
                                                 
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-sm-12 col-md-4 m-1">
                                                 <button type="button" className="btn btn-danger" onClick={() => deleteCategory(item._id)}>Delete</button>
                                             </div>
                                         </div>
