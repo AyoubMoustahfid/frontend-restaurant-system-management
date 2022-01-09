@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import logo from './../assets/icons/logo-food.png'
 
-import {img_superAdmin_login} from "./../Constants/images"
+import {img_user_login} from "./../Constants/images"
 import { isAuthenticated } from '../auth/helpers'
 
 function Layout({children}) {
@@ -17,7 +17,7 @@ function Layout({children}) {
                         <div className="card" style={{height: '100%', maxHeight: '100%', border: "none"}}>
                             <div className="card-body" style={{backgroundColor: 'black', color: '#eaedf2'}}>
                                 <h2 className="card-header">
-                                    <img src={img_superAdmin_login} width="50px" height="50px" style={{borderRadius: '5px'}}/> 
+                                    <img src={img_user_login} width="50px" height="50px" style={{borderRadius: '5px'}}/> 
                                     <span className="mx-2" style={{fontSize: '1.4rem'}}>{role === "SUPER_ADMIN" ? 'Super Admin' : 'User'}</span>
                                 </h2>
                                 <ul className="list-group list-group-flush">

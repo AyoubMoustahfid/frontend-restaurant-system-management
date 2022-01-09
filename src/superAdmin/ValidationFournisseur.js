@@ -132,7 +132,9 @@ function ValidationFournisseur() {
                                 }</td>
                                 <td><span style={{fontSize: '.875rem'}}>{item.role}</span></td>
                                 <td>
-                                    <button className="btn btn-primary btn-block" onClick={() => activeFournisseur(item._id)}>Fournisseur</button>
+                                    <div className="d-grid">
+                                        <button className="btn btn-primary btn-block" onClick={() => activeFournisseur(item._id)}>Fournisseur</button>
+                                    </div>
                                 </td>
                             </tr>
                             ))}
