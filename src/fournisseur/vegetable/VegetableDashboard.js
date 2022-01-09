@@ -7,6 +7,7 @@ import "toastr/build/toastr.css";
 import lodash from "lodash"
 
 import {getFournisseurById, getAllVegetableByFournisseur, deleteFruit} from "./../ApiFournisseur"
+import { Line } from 'react-chartjs-2';
 
 const PageSize = 2;
 function VegetableDashboard() {
@@ -165,11 +166,57 @@ function VegetableDashboard() {
       setPaginationFruits(paginateCategory)
     }
 
+    const array = []
+    const valeur = []
+
+    console.log(elements && elements.forEach(item => array.push(item.name)))
+    console.log(elements && elements.forEach(item => valeur.push(item.package)))
 
     return (
         <Layout>
         <div className="row px-3">
             <div className="col-12 bg-white my-2">
+                <div className="row justify-content-between">
+                        <div className="col-12   bg-white p-3">
+                             <Line
+                                data={{
+                                labels: array,
+                                datasets: [
+                                    {
+                                    label: 'Stock Fruit',
+                                    data: valeur,
+                                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                    hoverBackgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                    borderColor: ['rgba(255, 99, 132, 1)'],
+                                    borderWidth: 1,
+                                    },
+                                    
+                                ],
+                                }}
+                                height={400}
+                                width={600}
+                                options={{
+                                maintainAspectRatio: false,
+                                scales: {
+                                    yAxes: [
+                                    {
+                                        ticks: {
+                                        beginAtZero: true,
+                                        },
+                                    },
+                                    ],
+                                },
+                                legend: {
+                                    labels: {
+                                    fontSize: 25,
+                                    },
+                                },
+                                }}
+                            />
+                            
+                            
+                        </div>
+                    </div>
                 <div className="row align-items-center p-2">
                     <div className="col-6">
                         <h2 className="page-heading">Hi,Welcome Back!</h2>

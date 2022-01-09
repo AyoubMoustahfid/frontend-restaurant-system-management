@@ -9,10 +9,6 @@ import {getFournisseurById, getAllFruitByFournisseur, deleteFruit} from "./../Ap
 
 import { Line } from 'react-chartjs-2';
 
-import {icon_quantity_chart, icon_product_chart} from "./../../Constants/icons"
-// defaults.global.tooltips.enabled = false
-// defaults.global.legend.position = 'bottom'
-
 const PageSize = 3;
 function FruitDashboard() {
     const { user, token } = isAuthenticated();
