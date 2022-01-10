@@ -141,7 +141,7 @@ const Checkout = ({products}) => {
 
     return (
         <div>
-            <h2>Total : <span className="badge badge-success">{totalToCheckout(products).toString().substring(0, 7)}</span> </h2>
+            <h2>Total : <span className="badge bg-success">{totalToCheckout(products).toString().substring(0, 7)}</span> </h2>
             <label  htmlFor="address">Delivered Address</label>
             <textarea className="form-control" onChange={handleInput} rows="2"></textarea>
             {showBtnToCheckout()}
