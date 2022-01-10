@@ -224,7 +224,7 @@ function VegetableDashboard() {
                     </div>
                     <div className="col-6 text-end">
                         <button type="button" className="btn btn-success text-center" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                            Create Fruit
+                            Create Vegetable
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg mx-2" viewBox="0 0 16 16">
                                 <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
                             </svg>
@@ -277,10 +277,7 @@ function VegetableDashboard() {
                                     </div>
                                 </form>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss={active ? "" : "modal"}>Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
-                            </div>
+                           
                             </div>
                         </div>
                         </div>
@@ -360,10 +357,7 @@ function VegetableDashboard() {
                                                         </div>
                                                     </form>
                                                 </div>
-                                                <div className="modal-footer">
-                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss={active ? "" : "modal"}>Close</button>
-                                                    <button type="button" className="btn btn-primary">Save changes</button>
-                                                </div>
+                                                
                                                 </div>
                                             </div>
                                         </div>
